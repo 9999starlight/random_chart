@@ -6,7 +6,7 @@
       v-for="box in boxArray"
       :key="box.index"
     >
-      <label for="boxLetter">{{ box }}</label>
+      <span>{{ box }}</span>
       <Box />
     </div>
   </div>
@@ -25,17 +25,11 @@ export default {
       boxArray: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
     }
   },
-  /*   created: {
-    this.addition ()
-  }, */
+
   computed: {
   },
   methods: {
   }
-  /*   mounted () {
-      // const test = this.initialValue
-      console.log(this.randomNumber)
-    } */
 }
 </script>
 <style lang="scss">
