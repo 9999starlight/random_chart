@@ -3,17 +3,17 @@
     <h1>this is a home page</h1>
     <div
       class="boxes"
-      v-for="box in boxArray"
-      :key="box.index"
+      v-for="boxItem in getArrayOfValues"
+      :key="boxItem.index"
     >
-      <span>{{ box }}</span>
-      <Box />
+        <Box :boxItem="boxItem"/>
     </div>
   </div>
 </template>
 
 <script>
 import Box from '../components/Box'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'home',
   components: {
@@ -22,13 +22,39 @@ export default {
 
   data () {
     return {
-      boxArray: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+      counting: null
     }
+  },
+  mounted () {
+    this.$store.dispatch('fetchBoxes')
+    // console.log(this.getArrayOfValues)
+    this.updateValue()
   },
 
   computed: {
+    ...mapActions(['fetchBoxes', 'randomizeValues']),
+    ...mapGetters(['getArrayOfValues'])
   },
   methods: {
+    updateValue () {
+      this.counting = setInterval(() => {
+        this.$store.dispatch('randomizeValues')
+        console.log(this.getArrayOfValues)
+      }, 10000)
+    },
+
+    stopCounting () {
+      clearInterval(this.counting)
+    }
+  },
+
+  beforeDestroy () {
+    this.stopCounting()
+  },
+
+  beforeRouteLeave (to, from, next) {
+    this.stopCounting()
+    next()
   }
 }
 </script>

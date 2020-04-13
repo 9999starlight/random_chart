@@ -1,72 +1,66 @@
 <template>
   <div class="boxContainer">
-    <!-- <input type="text" id="boxLetter" v-model="startValue" /> -->
-    <span>{{ startValue.toFixed(2) }}</span>
-    <button
-      v-if="paused"
-      @click="updateValue"
-    >Start counting</button>
-    <button
+    <span>{{ boxItem.name }}</span>
+    <span>{{ boxItem.values[boxItem.values.length -1].toFixed(2) }}</span>
+<!--     <button
+      @click="randomizeValues"
+    >Start counting</button> -->
+<!--     <button
       v-else
       @click="stopCounting"
-    >Pause counting</button>
+    >Pause counting</button> -->
+<!--     <span v-if="toggleIncreased">
+      <font-awesome-icon :icon="['fa', 'arrow-up']" class="arrowIcon">
+        </font-awesome-icon></span>
+    <span v-else>---</span> -->
+    <span :class="[toggleIncreased ? 'arrow arrowUp' : 'arrow arrowDown']"><font-awesome-icon :icon="['fa', 'arrow-up']" class="arrowIcon">
+        </font-awesome-icon></span>
   </div>
 </template>
 
 <script>
+// import { mapActions } from 'vuex'
 export default {
   name: 'Box',
-  data () {
+  /* data () {
     return {
-      startValue: 3,
-      // randomNumber: Number((Math.random() * 1 + 1).toFixed(2)),
-      counting: null,
-      countingAgain: null,
       paused: false
+    }
+  }, */
+
+  props: {
+    boxItem: {
+      type: Object,
+      required: true
     }
   },
 
-  mounted () {
-    this.updateValue()
+  computed: {
+    toggleIncreased () {
+      if (this.boxItem.values[this.boxItem.values.length - 1] > this.boxItem.values[this.boxItem.values.length - 2]) {
+        return true
+      } else {
+        return false
+      }
+    }
   },
 
   methods: {
-  /*     updateValue () {
-      this.paused = false
-      this.counting = setInterval(() => {
-        // console.log(this.randomNumber)
-        const sum = this.startValue += this.randomNumber
-        return sum
-      }, 2000)
-    }, */
-
-    updateValue () {
-      (this.displayNumbers = () => {
-        this.paused = false
-        this.counting = setTimeout(() => {
-          let random = Number((Math.random() * 1 + 1).toFixed(2))
-          // choose positive or negative
-          const plusMinus = Math.random() < 0.5 ? -1 : 1
-          random = random * plusMinus
-          // console.log(random)
-          const sum = this.startValue += random
-          return sum
-        }, 5000)
-        this.countingAgain = setTimeout(this.displayNumbers, 5000)
-      })()
-    },
-
-    stopCounting () {
-      this.paused = true
-      clearTimeout(this.counting)
-      clearTimeout(this.countingAgain)
-    }
-  },
-
-  beforeDestroy () {
-    this.stopCounting()
   }
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.arrow {
+  transition: 0.8s;
+  display: inline-block;
+}
+.arrowUp {
+  color: green;
+}
+
+.arrowDown {
+  transform: rotateX(180deg);
+  color: red;
+}
+</style>
