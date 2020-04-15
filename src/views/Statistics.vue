@@ -84,7 +84,8 @@ export default {
 
       summary {
         padding: 0.4rem 0;
-        background-color: #cf6f2a;
+        background-color: #eeae5a;
+        text-shadow: 2px 2px 4px #000;
         @include fonts($color: $white);
         @include boxSize($width: 100%);
         border: none;

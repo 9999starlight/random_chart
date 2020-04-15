@@ -153,7 +153,7 @@ export default {
       font-weight: 500;
 
       &.btnPause {
-        background-color: #5bb1b8;
+        background-color: #ebc877;
       }
 
       &.btnPlay {

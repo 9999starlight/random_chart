@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="mgb1">Current Values</h1>
-    <div class="boxesWrapper grid">
+    <div class="boxesWrapper flex flexCenter">
       <div
         class="boxes"
         v-for="boxItem in getArrayOfValues"
@@ -34,8 +34,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .boxesWrapper {
-  @include alignment($justifyGrid: center, $align: center);
-
+  @include alignment($direction: column);
+  @include boxSize($maxWidth: 1500px);
   .boxes {
     @include boxSize($width: 240px, $height: 100px);
     box-shadow: $shadowSmall;
@@ -46,7 +46,8 @@ export default {
 
 @media (min-width: 776px) {
   .boxesWrapper {
-    grid-template-columns: repeat(3, 1fr);
+    @include alignment($direction: row);
+    flex-wrap: wrap;
     .boxes {
       @include boxSize($width: 210px);
     }
@@ -54,7 +55,6 @@ export default {
 
   @media (min-width: 1200px) {
     .boxesWrapper {
-      grid-template-columns: repeat(3, 1fr);
       .boxes {
         @include boxSize($width: 240px);
       }
@@ -63,7 +63,6 @@ export default {
 
   @media (min-width: 1400px) {
     .boxesWrapper {
-      grid-template-columns: repeat(4, 1fr);
       .boxes {
         @include boxSize($width: 270px, $height: 130px);
         font-size: 110%;

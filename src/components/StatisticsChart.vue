@@ -34,10 +34,11 @@ export default {
   },
 
   computed: {
+    // label for x axis - every 2 seconds interval
     calculatePeriod () {
       const pulse = []
       for (let i = 0; i < this.item.values.length; i++) {
-        pulse.push(i)
+        pulse.push(`${(i + 1) * 2}`)
       }
       return pulse
     }
