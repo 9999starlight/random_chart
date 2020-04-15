@@ -18,17 +18,17 @@ const mutations = {
     state.arrayOfValues = payload
   },
 
-  SET_RANDOM_VALUES (state) {
-    state.arrayOfValues.forEach(val => {
-      let random = Number((Math.random() * 1 + 1).toFixed(2))
-      // choose positive or negative
-      const plusMinus = Math.random() < 0.5 ? -1 : 1
-      random = random * plusMinus
-      const lastValue = val.values.slice(-1)
-      const sum = lastValue[0] += random
-      val.values.push(sum)
-      // console.log(val.values)
-    })
+  SET_RANDOM_VALUES (state, val) {
+    // state.arrayOfValues.forEach(val => {
+    let random = Number((Math.random() * 1 + 1).toFixed(2))
+    // choose positive or negative
+    const plusMinus = Math.random() < 0.5 ? -1 : 1
+    random = random * plusMinus
+    const lastValue = val.values.slice(-1)
+    const sum = lastValue[0] += random
+    val.values.push(sum)
+    // console.log(val.values)
+    // })
   }
 }
 
@@ -46,8 +46,8 @@ const actions = {
     }
   },
 
-  randomizeValues ({ commit }) {
-    commit('SET_RANDOM_VALUES')
+  randomizeValues ({ commit }, val) {
+    commit('SET_RANDOM_VALUES', val)
   }
 }
 

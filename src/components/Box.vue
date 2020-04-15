@@ -1,32 +1,56 @@
 <template>
   <div class="boxContainer">
-    <span>{{ boxItem.name }}</span>
-    <span>{{ boxItem.values[boxItem.values.length -1].toFixed(2) }}</span>
-<!--     <button
-      @click="randomizeValues"
-    >Start counting</button> -->
-<!--     <button
-      v-else
-      @click="stopCounting"
-    >Pause counting</button> -->
-<!--     <span v-if="toggleIncreased">
-      <font-awesome-icon :icon="['fa', 'arrow-up']" class="arrowIcon">
-        </font-awesome-icon></span>
-    <span v-else>---</span> -->
-    <span :class="[toggleIncreased ? 'arrow arrowUp' : 'arrow arrowDown']"><font-awesome-icon :icon="['fa', 'arrow-up']" class="arrowIcon">
-        </font-awesome-icon></span>
+    <div class="boxHeader flex flexCenter">{{ boxItem.name }}</div>
+    <div class="mainContent flex flexCenter">
+      <p :class="[!plusMinus ? 'valueDown' : '']">
+        {{ boxItem.values[boxItem.values.length - 1].toFixed(2) }} &nbsp;<span :class="[toggleIncreased ? 'arrow valueUp' : 'arrow valueDown arrowDown']">
+          <font-awesome-icon
+            :icon="['fa', 'arrow-up']"
+            class="arrowIcon"
+          >
+          </font-awesome-icon>
+        </span>
+      </p>
+      <div class="buttons">
+        <button
+          v-if="paused"
+          @click="updateValue"
+          class="btn btnPlay block center"
+          title="resume updating"
+        >Resume&nbsp;
+          <font-awesome-icon
+            :icon="['fa', 'play']"
+            class="btnIcon resumeIcon"
+          >
+          </font-awesome-icon>
+        </button>
+        <button
+          v-else
+          @click="stopCounting"
+          class="btn btnPause block center"
+          title="pause updating"
+        >Pause&nbsp;
+          <font-awesome-icon
+            :icon="['fa', 'pause']"
+            class="btnIcon pauseIcon"
+          >
+          </font-awesome-icon></button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   name: 'Box',
-  /* data () {
+
+  data () {
     return {
-      paused: false
+      paused: false,
+      counting: null
     }
-  }, */
+  },
 
   props: {
     boxItem: {
@@ -35,32 +59,125 @@ export default {
     }
   },
 
+  mounted () {
+    this.updateValue()
+  },
+
   computed: {
+    ...mapActions(['randomizeValues']),
+
     toggleIncreased () {
-      if (this.boxItem.values[this.boxItem.values.length - 1] > this.boxItem.values[this.boxItem.values.length - 2]) {
+      if (
+        this.boxItem.values[this.boxItem.values.length - 1] >
+        this.boxItem.values[this.boxItem.values.length - 2]
+      ) {
+        return true
+      } else {
+        return false
+      }
+    },
+
+    plusMinus () {
+      if (
+        this.boxItem.values[this.boxItem.values.length - 1] > 0
+      ) {
         return true
       } else {
         return false
       }
     }
   },
-
   methods: {
+    updateValue () {
+      this.paused = false
+      this.counting = setInterval(() => {
+        this.$store.dispatch('randomizeValues', this.boxItem)
+      }, 4000)
+    },
+
+    stopCounting () {
+      this.paused = true
+      clearInterval(this.counting)
+    }
+  },
+  beforeDestroy () {
+    this.stopCounting()
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .arrow {
   transition: 0.8s;
   display: inline-block;
 }
-.arrowUp {
+.valueUp {
   color: green;
+}
+
+.valueDown {
+  color: red;
 }
 
 .arrowDown {
   transform: rotateX(180deg);
-  color: red;
+}
+
+.boxContainer {
+  @include boxSize($width: 100%, $height: 100%);
+  .boxHeader {
+    @include boxSize($width: 100%, $height: 30%);
+    @include alignment($textAlign: center);
+    @include fonts($color: $white, $weight: 900);
+    background: linear-gradient(229deg, #095e52, #417f84, #5eb5a7);
+    text-shadow: 2px 2px 4px #000;
+  }
+  .mainContent {
+    @include boxSize($width: 100%, $height: 70%);
+    @include alignment($justify: space-evenly);
+    .buttons,
+    p {
+      @include boxSize($width: 50%);
+    }
+    p {
+      text-align: center;
+      font-weight: 900;
+
+      &.valueDown {
+        color: red;
+      }
+    }
+
+    .btn {
+      @include boxSize($width: 70px, $height: 25px);
+      border: none;
+      border-radius: 3px;
+      box-shadow: $shadowSmall;
+      color: $white;
+      font-weight: 500;
+
+      &.btnPause {
+        background-color: #5bb1b8;
+      }
+
+      &.btnPlay {
+        // border: 1px inset rgba(0, 128, 0, 0.884);
+        background-color: #6a93cb;
+        background-image: linear-gradient(to top, #7e7676 0%, #c8c2bd 100%);
+        // background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
+      }
+      .btnIcon {
+        @include fonts($weight: 700, $size: 0.7rem, $color: $white);
+      }
+
+      /* .pauseIcon {
+          @include fonts($color: rgba(221, 157, 33, 0.86));
+        }
+
+        .resumeIcon {
+          @include fonts($color: rgba(107, 235, 107, 0.884));
+        } */
+    }
+  }
 }
 </style>

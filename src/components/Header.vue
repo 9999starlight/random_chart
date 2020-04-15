@@ -28,30 +28,33 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  position: sticky;
+  position: fixed;
   @include boxSize($width: 100%, $height: 7vh);
   @include alignment($justify: flex-end);
   padding: 0 0.7rem;
   top: 0;
   box-shadow: $shadowSmall;
+  background-color: #566065;
+  z-index: 5;
+
   nav {
     @include boxSize($height: 90%);
     li {
       &.active {
-        border-bottom: 2px solid rgba(250, 128, 114, 0.705);
+        border-bottom: 2px solid white;
       }
     }
     li a {
       padding: 0.8rem;
-      @include fonts($color: $graphite);
+      @include fonts($color: $white);
       &:hover {
-        color: rgba(250, 128, 114, 0.452);
+        color: rgba(8, 88, 71, 0.452);
       }
     }
   }
 }
 
-@media(min-width: 776px) {
+@media (min-width: 776px) {
   header {
     li a {
       @include fonts($color: $graphite, $size: 1.2rem);

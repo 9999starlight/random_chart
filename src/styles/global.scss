@@ -19,14 +19,17 @@
 }
 
 .container {
-  @include boxSize($width: 100%, $height: 100%);
-  @include alignment($justifyGrid: center, $align: center);
+  @include boxSize($width: 100%);
+  @include alignment($display: flex, $direction:column, $justify: center, $align: center, $textAlign: center);
   padding: 1rem;
+  margin-top: 7vh;
+  flex: 1;
 }
 
 a,
 button,
-li {
+li,
+details {
   cursor: pointer;
 }
 
@@ -36,10 +39,15 @@ a {
 
 a:hover,
 button:hover,
-input[type="button"]:hover {
+input[type="button"]:hover,
+summary:hover {
   filter: brightness(40%);
 }
 
+h1 {
+  color: whitesmoke;
+  font-family: "Poppins", Arial, sans-serif;
+}
 // utillity classes
 
 .flex {
