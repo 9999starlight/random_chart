@@ -33,16 +33,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .boxesWrapper {
-    @include alignment($justifyGrid: center, $align: center);
+.boxesWrapper {
+  @include alignment($justifyGrid: center, $align: center);
 
-    .boxes {
-      @include boxSize($width: 240px, $height: 100px);
-      box-shadow: $shadowSmall;
-      margin: 1rem;
-      background-color: $white;
-    }
+  .boxes {
+    @include boxSize($width: 240px, $height: 100px);
+    box-shadow: $shadowSmall;
+    margin: 1rem;
+    background-color: $white;
   }
+}
 
 @media (min-width: 776px) {
   .boxesWrapper {
@@ -56,10 +56,10 @@ export default {
     .boxesWrapper {
       grid-template-columns: repeat(3, 1fr);
       .boxes {
-      @include boxSize($width: 240px);
+        @include boxSize($width: 240px);
+      }
     }
-    }
-    }
+  }
 
   @media (min-width: 1400px) {
     .boxesWrapper {

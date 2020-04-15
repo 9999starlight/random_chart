@@ -32,7 +32,15 @@ export default {
   @include alignment($direction: column, $align: center);
   @include fonts($color: $graphite);
   font-family: "Lato", Arial, sans-serif;
-  @include background(radial-gradient(ellipse at center,rgba(103, 129, 133, 0.8) 0%, rgba(78, 77, 77, 0.9) 100%), url('./assets/background_blue.jpg'), $backConfig);
+  @include background(
+    radial-gradient(
+      ellipse at center,
+      rgba(103, 129, 133, 0.8) 0%,
+      rgba(78, 77, 77, 0.9) 100%
+    ),
+    url("./assets/background_blue.jpg"),
+    $backConfig
+  );
   background-attachment: fixed;
 
   .fade-enter-active,

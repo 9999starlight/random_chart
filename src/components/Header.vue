@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
 header {
   position: fixed;
-  @include boxSize($width: 100%, $height: 7vh);
+  @include boxSize($width: 100%, $height: 3.5rem);
   @include alignment($justify: flex-end);
   padding: 0 0.7rem;
   top: 0;

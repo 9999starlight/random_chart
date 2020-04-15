@@ -3,8 +3,6 @@ $white: #fff;
 $graphite: #333;
 $lightgray: rgb(189, 179, 179);
 $bluegreen: #39776d;
-// gradients
-
 
 // configs
 $shadowSmall: 3px 3px 6px rgba(35, 35, 36, 0.47);
@@ -12,9 +10,8 @@ $shadowBox: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
 0 6px 20px 0 rgba(0, 0, 0, 0.801);
 $backConfig: no-repeat center center/cover;
 $sizes: 1, 2, 3;
-// mixins
 
-// background all
+// mixins
 @mixin background($filter, $url, $backConfig) {
   background: $filter, $url $backConfig;
 }
@@ -91,7 +88,7 @@ $sizes: 1, 2, 3;
   }
 }
 
-// margin classes
+// margin/padding classes
 $sizes: 1,
 2,
 3;

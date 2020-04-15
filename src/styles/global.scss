@@ -18,14 +18,6 @@
   transition: all 0.1s ease;
 }
 
-.container {
-  @include boxSize($width: 100%);
-  @include alignment($display: flex, $direction:column, $justify: center, $align: center, $textAlign: center);
-  padding: 1rem;
-  margin-top: 7vh;
-  flex: 1;
-}
-
 a,
 button,
 li,
@@ -50,6 +42,15 @@ h1 {
 }
 // utillity classes
 
+.container {
+  @include boxSize($width: 100%);
+  @include alignment($display: flex, $direction:column, $justify: center, $align: center, $textAlign: center);
+  padding: 1rem;
+  margin-top: 3.5rem;
+  flex: 1;
+  overflow: auto;
+}
+
 .flex {
   display: flex;
 }
@@ -57,11 +58,6 @@ h1 {
 .flexCenter {
   justify-content: center;
   align-items: center;
-}
-
-.fullSize {
-  width: 100%;
-  height: 100%;
 }
 
 .block {
@@ -76,10 +72,6 @@ h1 {
   margin: 0 auto;
 }
 
-.fullWidth {
-  width: 100%;
-}
-
 // animations transitions
 
 .fade-enter-active {
@@ -89,7 +81,3 @@ h1 {
 .fade-leave-active {
   animation: fade 800 reverse;
 }
-
-/* .btn {
-
-} */

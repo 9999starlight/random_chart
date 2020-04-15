@@ -66,7 +66,7 @@ export default {
     border-bottom: 2px inset gray;
     box-shadow: $shadowBox;
     position: relative;
-    @include boxSize($minHeight: 560px);
+    @include boxSize($minHeight: 500px);
     background-color: $white;
 
     details {
@@ -83,8 +83,8 @@ export default {
       }
 
       summary {
-        padding: 0.4rem 0.6rem;
-        background-color: #e8690cd6;
+        padding: 0.4rem 0;
+        background-color: #cf6f2a;
         @include fonts($color: $white);
         @include boxSize($width: 100%);
         border: none;

@@ -29,8 +29,7 @@ export default {
           data: this.item.values
         }
       ]
-    }/* ,
-    { responsive: true, maintainAspectRatio: false } */
+    }
     )
   },
 

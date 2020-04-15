@@ -5,8 +5,8 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-  strict: true,
-  // strict: process.env.NODE_ENV !== 'production',
+  // strict: true,
+  strict: process.env.NODE_ENV !== 'production',
   modules: {
     getValues
   },

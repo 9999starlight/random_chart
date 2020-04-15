@@ -92,7 +92,7 @@ export default {
       this.paused = false
       this.counting = setInterval(() => {
         this.$store.dispatch('randomizeValues', this.boxItem)
-      }, 4000)
+      }, 2000)
     },
 
     stopCounting () {
@@ -107,22 +107,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.arrow {
-  transition: 0.8s;
-  display: inline-block;
-}
-.valueUp {
-  color: green;
-}
-
-.valueDown {
-  color: red;
-}
-
-.arrowDown {
-  transform: rotateX(180deg);
-}
-
 .boxContainer {
   @include boxSize($width: 100%, $height: 100%);
   .boxHeader {
@@ -142,8 +126,20 @@ export default {
     p {
       text-align: center;
       font-weight: 900;
-
       &.valueDown {
+        color: red;
+      }
+      .arrow {
+        transition: 0.4s;
+        display: inline-block;
+      }
+      .valueUp {
+        color: green;
+      }
+      .arrowDown {
+        transform: rotateX(180deg);
+      }
+      .valueDown {
         color: red;
       }
     }

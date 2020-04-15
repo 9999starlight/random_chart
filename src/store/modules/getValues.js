@@ -19,7 +19,6 @@ const mutations = {
   },
 
   SET_RANDOM_VALUES (state, val) {
-    // state.arrayOfValues.forEach(val => {
     let random = Number((Math.random() * 1 + 1).toFixed(2))
     // choose positive or negative
     const plusMinus = Math.random() < 0.5 ? -1 : 1
@@ -28,7 +27,6 @@ const mutations = {
     const sum = lastValue[0] += random
     val.values.push(sum)
     // console.log(val.values)
-    // })
   }
 }
 
@@ -37,7 +35,6 @@ const actions = {
     const resultsArray = []
     const values = JSON.parse(sessionStorage.getItem('session_values'))
     if (values) {
-      // const arr = values.getValues.arrayOfValues
       values.getValues.arrayOfValues.forEach(a => resultsArray.push(a))
       commit('SET_ARRAY_OF_VALUES', resultsArray)
     } else {
