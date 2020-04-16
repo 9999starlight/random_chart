@@ -40,6 +40,7 @@ h1 {
   color: whitesmoke;
   font-family: "Poppins", Arial, sans-serif;
 }
+
 // utillity classes
 
 .container {
@@ -70,14 +71,4 @@ h1 {
 
 .center {
   margin: 0 auto;
-}
-
-// animations transitions
-
-.fade-enter-active {
-  animation: fade 800;
-}
-
-.fade-leave-active {
-  animation: fade 800 reverse;
 }

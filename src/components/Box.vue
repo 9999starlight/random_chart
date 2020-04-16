@@ -157,22 +157,12 @@ export default {
       }
 
       &.btnPlay {
-        // border: 1px inset rgba(0, 128, 0, 0.884);
         background-color: #6a93cb;
         background-image: linear-gradient(to top, #7e7676 0%, #c8c2bd 100%);
-        // background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
       }
       .btnIcon {
         @include fonts($weight: 700, $size: 0.7rem, $color: $white);
       }
-
-      /* .pauseIcon {
-          @include fonts($color: rgba(221, 157, 33, 0.86));
-        }
-
-        .resumeIcon {
-          @include fonts($color: rgba(107, 235, 107, 0.884));
-        } */
     }
   }
 }

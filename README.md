@@ -14,3 +14,4 @@ Into the each field there is a toggle button to disable/enable the change on tha
 Second page is for statistics (on url '/statistics'). This page shows change statistics for all 10 fields. This is presented with charts and additional listing for all values. Chart shows value changes (y axis) in time on every 2 seconds (x axis).
 
 When going from '/' to '/statistics' all the changes are paused, and on returning back changes are resumed.
+*vuex-persisted state used with session storage (to be cleaned after app closes)
