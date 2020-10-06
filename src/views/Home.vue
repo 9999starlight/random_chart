@@ -27,8 +27,11 @@ export default {
   },
 
   computed: {
-    ...mapActions(['fetchBoxes']),
     ...mapGetters(['getArrayOfValues'])
+  },
+
+  methods: {
+    ...mapActions(['fetchBoxes'])
   }
 }
 </script>

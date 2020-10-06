@@ -64,8 +64,6 @@ export default {
   },
 
   computed: {
-    ...mapActions(['randomizeValues']),
-
     toggleIncreased () {
       if (
         this.boxItem.values[this.boxItem.values.length - 1] >
@@ -88,6 +86,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['randomizeValues']),
+
     updateValue () {
       this.paused = false
       this.counting = setInterval(() => {
